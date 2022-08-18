@@ -1,0 +1,23 @@
+type Client{
+	id: ID!,
+	name: String,
+	accounts:[Account]
+}
+
+type Account{
+	id: ID!,
+	address: String,
+	clientId: Int,
+	amount: Float
+}
+
+type Query {
+	client(id: ID):Client
+    accounts(clientId:Int):[Account]
+    transaction(addressFrom: String!, addressTo: String!, amount: Float!):Account
+}
+
+type Mutation {
+	createAccount(address: String!,clientId:Int!,amount:Float!):Account
+	createClient(name: String!):Client
+}
